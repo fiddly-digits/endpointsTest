@@ -8,8 +8,23 @@ const server = http.createServer((req, res) => {
 
   const { url, method } = req;
 
-  if (method && url) {
-    res.write(`Estamos en el endpoint de ${method} en ${url}`);
+  const httpMethods = {
+    GET: 'Metodo Get',
+    PUT: 'Metodo Put',
+    PATCH: 'Metodo Patch',
+    DELETE: 'Metodo Delete',
+    POST: 'Metodo Post'
+  };
+
+  const routes = {
+    '/hola': 'Hola',
+    '/adios': 'Adios'
+  };
+
+  if (httpMethods[method] && routes[url]) {
+    res.write(
+      `Estamos en el endpoint de ${httpMethods[method]} en ${routes[url]}`
+    );
   }
 
   // 1er endpoint
